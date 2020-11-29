@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sorenjmadsen/Queue-Manager/issues"
   },
-  "homepage": "https://github.com/sorenjmadsen/Queue-Manager#readme"
+  "homepage": "https://github.com/sorenjmadsen/Queue-Manager#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
