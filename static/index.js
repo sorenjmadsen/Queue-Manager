@@ -35,7 +35,8 @@ function sendToServer(event) {
         method: 'POST',
         body: JSON.stringify(obj)
     };
-    fetch(`/questions/${obj.lab}`, options)
+    const lab_as_string = JSON.stringify(obj.lab)
+    fetch(`/questions/${lab_as_string}`, options)
         .then((res) => { res.ok ? console.log(res) : console.log(":{") })
         .catch(() => {
             let missedQuestions = localStorage.getItem("QUESTIONS")
