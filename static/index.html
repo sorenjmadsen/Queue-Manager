@@ -29,8 +29,39 @@
         document.getElementById("list").appendChild(li);
       }
       document.getElementById("myInput").value = "";
-
     }
+
+    function sendToServer(data){
+      let obj = {"questions" : data};
+      console.log(obj)
+      const headers = new Headers({
+          'Content-Type': 'application/json'
+      });
+      const options = {
+          headers: headers,
+          method: 'POST',
+          body: JSON.stringify(obj)
+      };
+      fetch('/questions/:lab', options)
+      .then((res) => {res.ok ? console.log(":)") : console.log(":{")})
+      .catch(() => {
+          let missedQuestions = localStorage.getItem("QUESTIONS")
+          console.log(missedQuestions)
+          if (missedQuestions) {
+              missedQuestions = JSON.stringify([
+                  ...JSON.parse(missedQuestions), data
+              ])
+          
+              localStorage.setItem("QUESTIONS", missedQuestions)
+          }
+          else {
+              missedQuestions = JSON.stringify([
+                  data
+              ])
+              localStorage.setItem("QUESTIONS", missedQuestions)
+          }
+      })
+}
 </script>
 
 </body>
