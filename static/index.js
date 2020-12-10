@@ -13,13 +13,15 @@ function newElement() {
     } else {
         document.getElementById("list").appendChild(li);
     }
-    document.getElementById("myInput").value = "";
+    //document.getElementById("myInput").value = "";
 }
 
 // when you use this function as an event handler, the parameter is 
 // an event object. not data
 function sendToServer(event) {
-    const obj = {"text": event.data }// how do you get the value from the input box
+    const obj = {
+        "text": document.getElementById("myInput").value // how do you get the text that was sent with the event
+    }
     console.log(obj)
     const headers = new Headers({
         'Content-Type': 'application/json'
@@ -30,20 +32,20 @@ function sendToServer(event) {
         body: JSON.stringify(obj)
     };
     fetch('/questions/:lab', options)
-        .then((res) => { res.ok ? console.log(":)") : console.log(":{") })
+        .then((res) => { res.ok ? console.log(res) : console.log(":{") })
         .catch(() => {
             let missedQuestions = localStorage.getItem("QUESTIONS")
             console.log(missedQuestions)
             if (missedQuestions) {
                 missedQuestions = JSON.stringify([
-                    ...JSON.parse(missedQuestions), event.data
+                    ...JSON.parse(missedQuestions), event
                 ])
 
                 localStorage.setItem("QUESTIONS", missedQuestions)
             }
             else {
                 missedQuestions = JSON.stringify([
-                    event.data
+                    data
                 ])
                 localStorage.setItem("QUESTIONS", missedQuestions)
             }
