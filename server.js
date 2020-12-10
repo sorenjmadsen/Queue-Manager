@@ -2,6 +2,7 @@ const express = require('express')
 const fsSync = require('fs')
 const fs = require('fs/promises')
 const path = require('path')
+const date = new Date()
 
 const dataFile = "./data.json"
 const dataTemplate = {
@@ -102,15 +103,17 @@ const saveData = (data) => {
 const askQuestion = (req, res) => {
     const lab = req.params.lab
     if(!Object.keys(res.app.locals.data.questions).includes(lab)){
-        res.app.locals.data.questions[lab] = [req.body]
+        res.app.locals.data.questions[lab] = [{id: id, question : req.body}]
         const id = res.app.locals.data.questions[lab].length
         res.status(200).send({id : id})
     }
     else {
-        res.app.locals.data.questions[lab].push(req.body)
+        res.app.locals.data.questions[lab].push({id : id, question : req.body})
         const id = res.app.locals.data.questions[lab].length
         res.status(200).send({id : id})
     }
+    res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    saveData(res.app.locals.data)
 }
 
 // Function: postResource
@@ -118,15 +121,17 @@ const askQuestion = (req, res) => {
 const postResource = (req, res) => {
     const lab = req.params.lab
     if(!Object.keys(res.app.locals.data.resources).includes(lab)){
-        res.app.locals.data.resources[lab] = [req.body]
+        res.app.locals.data.resources[lab] = [{id : id, resource : req.body}]
         const id = res.app.locals.data.resources[lab].length
         res.status(200).send({id : id})
     }
     else {
-        res.app.locals.data.resources[lab].push(req.body)
         const id = res.app.locals.data.resources[lab].length
+        res.app.locals.data.resources[lab].push({id: id, resource : req.body})
         res.status(200).send({id : id})
     }
+    res.app.locals.data.statistics.lastResourcePosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    saveData(res.app.locals.data)
 }
 
 // API Endpoints
@@ -136,8 +141,12 @@ app.get('/questions/all', getAllQuestions)
 app.get('/resources/all', getAllResources)
 app.get('/questions/:lab', getLabQuestions)
 app.get('/resources/:lab', getLabResources)
+
 app.post('/questions/:lab', askQuestion)
 app.post('/resources/:lab', postResource)
+
+//app.delete('/questions/:lab/:id', deleteQuestion)
+
 
 // Check for saved data, then finish server setup
 fs.readFile(dataFile, "utf-8")
