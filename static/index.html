@@ -3,66 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
+    <script defer async src="index.js"></script>
 </head>
 <body>
 
 <div id="main" class="header">
   <h2 style="margin:10px">Questions</h2>
   <input type="text" id="myInput" placeholder="Please ask a question...">
-  <span onclick="newElement()" class="addBtn">Add</span>
+  <button class="addBtn" id="button">Add</button>
 </div>
 
 <ul id="list">
   <li></li>
 </ul>
-
-<script>
-    // Create a new list item when clicking on the "Add" button
-    function newElement() {
-      var li = document.createElement("li");
-      var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(inputValue);
-      li.appendChild(t);
-      if (inputValue === '') {
-        alert("You must write something!");
-      } else {
-        document.getElementById("list").appendChild(li);
-      }
-      document.getElementById("myInput").value = "";
-    }
-
-    function sendToServer(data){
-      let obj = {"questions" : data};
-      console.log(obj)
-      const headers = new Headers({
-          'Content-Type': 'application/json'
-      });
-      const options = {
-          headers: headers,
-          method: 'POST',
-          body: JSON.stringify(obj)
-      };
-      fetch('/questions/:lab', options)
-      .then((res) => {res.ok ? console.log(":)") : console.log(":{")})
-      .catch(() => {
-          let missedQuestions = localStorage.getItem("QUESTIONS")
-          console.log(missedQuestions)
-          if (missedQuestions) {
-              missedQuestions = JSON.stringify([
-                  ...JSON.parse(missedQuestions), data
-              ])
-          
-              localStorage.setItem("QUESTIONS", missedQuestions)
-          }
-          else {
-              missedQuestions = JSON.stringify([
-                  data
-              ])
-              localStorage.setItem("QUESTIONS", missedQuestions)
-          }
-      })
-}
-</script>
 
 </body>
 </html>
