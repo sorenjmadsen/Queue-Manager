@@ -102,17 +102,18 @@ const saveData = (data) => {
 // Description: Adds a question to the board of a specified lab. Returns the id of the question.
 const askQuestion = (req, res) => {
     const lab = req.params.lab
+    console.log("Question post attempted with data: " + req.body)
     if(!Object.keys(res.app.locals.data.questions).includes(lab)){
+        const id = 0
         res.app.locals.data.questions[lab] = [{id: id, question : req.body}]
-        const id = res.app.locals.data.questions[lab].length
         res.status(200).send({id : id})
     }
     else {
-        res.app.locals.data.questions[lab].push({id : id, question : req.body})
         const id = res.app.locals.data.questions[lab].length
+        res.app.locals.data.questions[lab].push({id : id, question : req.body})
         res.status(200).send({id : id})
     }
-    res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes().length > 1 ? date.getMinutes() : "0" + date.getMinutes());
     saveData(res.app.locals.data)
 }
 
@@ -120,9 +121,10 @@ const askQuestion = (req, res) => {
 // Description: Posts a resource to the board of a specified lab. Returns the assigned id of the resource.
 const postResource = (req, res) => {
     const lab = req.params.lab
+    console.log(req.body)
     if(!Object.keys(res.app.locals.data.resources).includes(lab)){
+        const id = 0
         res.app.locals.data.resources[lab] = [{id : id, resource : req.body}]
-        const id = res.app.locals.data.resources[lab].length
         res.status(200).send({id : id})
     }
     else {
@@ -130,7 +132,7 @@ const postResource = (req, res) => {
         res.app.locals.data.resources[lab].push({id: id, resource : req.body})
         res.status(200).send({id : id})
     }
-    res.app.locals.data.statistics.lastResourcePosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
+    res.app.locals.data.statistics.lastResourcePosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes());
     saveData(res.app.locals.data)
 }
 
