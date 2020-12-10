@@ -6,15 +6,15 @@ $ node server.js --port=[NUM]
     - NUM is user-defined.
 
 ## RESTful API Usage:
-GET / ;
-localhost:[PORT]
-    General
-                /api                  : Welcome to the API!
-                /statistics           : Returns some simple user statistics
-    Questions
-                /questions/all        : Returns all questions asked in all labs
-                /questions/[LAB_NAME] : Returns all questions asked in specified lab
-    Resources
-                /resources/all        : Returns all resources posted in all labs
-                /resources/[LAB_NAME] : Returns all resources posted in specified lab
+GET / \
+localhost:[PORT]\
+    General\
+                /api                  : Welcome to the API!\
+                /statistics           : Returns some simple user statistics\
+    Questions\
+                /questions/all        : Returns all questions asked in all labs\
+                /questions/[LAB_NAME] : Returns all questions asked in specified lab\
+    Resources\
+                /resources/all        : Returns all resources posted in all labs\
+                /resources/[LAB_NAME] : Returns all resources posted in specified lab\
 
