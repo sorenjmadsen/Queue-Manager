@@ -113,7 +113,7 @@ const askQuestion = (req, res) => {
         res.app.locals.data.questions[lab].push({id : id, question : req.body})
         res.status(200).send({id : id})
     }
-    res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes().length > 1 ? date.getMinutes() : "0" + date.getMinutes());
+    res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes());
     saveData(res.app.locals.data)
 }
 
