@@ -6,7 +6,7 @@ $ node server.js --port=[NUM]
     - NUM is user-defined.
 
 ## RESTful API Usage:
-GET / 
+GET / ;
 localhost:[PORT]
     General
                 /api                  : Welcome to the API!
