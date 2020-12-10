@@ -9,14 +9,14 @@ $ node server.js --port=[NUM]
 localhost:[PORT]
 **GET /**  <br>
 **General** <br>
-- localhost:[PORT]/api                  : Welcome to the API! <br>
-- localhost:[PORT]/statistics           : Returns some simple user statistics <br>
+- localhost:[PORT]**/api**                  : Welcome to the API! <br>
+- localhost:[PORT]**/statistics**           : Returns some simple user statistics <br>
 
 **Questions** <br>
-- localhost:[PORT]/questions/all        : Returns all questions asked in all labs <br>
-- localhost:[PORT]/questions/[LAB_NAME] : Returns all questions asked in specified lab <br>
+- localhost:[PORT]**/questions/all**        : Returns all questions asked in all labs <br>
+- localhost:[PORT]**/questions/[LAB_NAME]** : Returns all questions asked in specified lab <br>
 
 **Resources** <br>
-- localhost:[PORT]/resources/all        : Returns all resources posted in all labs <br>
-- localhost:[PORT]/resources/[LAB_NAME] : Returns all resources posted in specified lab <br>
+- localhost:[PORT]**/resources/all**        : Returns all resources posted in all labs <br>
+- localhost:[PORT]**/resources/[LAB_NAME]** : Returns all resources posted in specified lab <br>
 
