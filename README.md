@@ -5,6 +5,8 @@ Lab TAs of Santa Clara University, struggle no longer with managing students' qu
 $ node server.js --port=[NUM]<br>
     - NUM is user-defined.
 
+    BLAK LBAK
+
 ## RESTful API Usage:
 localhost:[PORT]<br>
 ### GET /  
