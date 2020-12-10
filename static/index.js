@@ -2,6 +2,8 @@
 let button = document.getElementById("button");
 button.addEventListener("click", newElement);
 button.addEventListener("click", sendToServer);
+const date = new Date()
+
 
 function newElement() {
     var li = document.createElement("li");
@@ -20,7 +22,9 @@ function newElement() {
 // an event object. not data
 function sendToServer(event) {
     const obj = {
-        "text": document.getElementById("myInput").value // how do you get the text that was sent with the event
+        "text": document.getElementById("myInput").value, 
+        "date": date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()),
+        "lab": document.getElementById("lab_specifier").value
     }
     console.log(obj)
     const headers = new Headers({
@@ -31,7 +35,7 @@ function sendToServer(event) {
         method: 'POST',
         body: JSON.stringify(obj)
     };
-    fetch('/questions/:lab', options)
+    fetch(`/questions/${obj.lab}`, options)
         .then((res) => { res.ok ? console.log(res) : console.log(":{") })
         .catch(() => {
             let missedQuestions = localStorage.getItem("QUESTIONS")
@@ -60,7 +64,7 @@ function listQuestions() {
             for (const lab of Object.values(body.questions)) {
                 for (const question of lab) {
                     const li = document.createElement("li")
-                    li.textContent = question
+                    li.textContent = "question:" + JSON.stringify(question.question.text) + "\t\t lab:" + JSON.stringify(question.question.lab)
                     document.getElementById("list").appendChild(li)
                 }
             }
