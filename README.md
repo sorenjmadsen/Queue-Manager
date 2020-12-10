@@ -21,9 +21,6 @@ localhost:[PORT]<br>
 - localhost:[PORT]**/resources/[LAB_NAME]** : Returns all resources posted in specified lab <br>'
 
 ### POST /  
-**Questions** <br>
 - localhost:[PORT]**/questions/[LAB_NAME]** : Posts question to the board in specified lab <br>
-
-**Resources** <br>
 - localhost:[PORT]**/resources/[LAB_NAME]** : Posts resource to the board in specified lab <br>
 
