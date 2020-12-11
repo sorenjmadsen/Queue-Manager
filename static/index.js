@@ -11,7 +11,7 @@ function newElement() {
     var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}" \t\t author: "${authorValue}"`);
     li.appendChild(t);
     if (questionValue === ''|| labValue === ''|| authorValue === '') {
-        alert("You must write something!");
+        alert("You must forgot to write something!");
     }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
     } else {
@@ -36,7 +36,8 @@ function sendToServer(event) {
         method: 'POST',
         body: JSON.stringify(obj)
     };
-    const lab_as_string = JSON.stringify(obj.lab)
+    let lab_as_string = JSON.stringify(obj.lab)
+    lab_as_string = lab_as_string.replace(/^"(.+(?="$))"$/, '$1'); //removes pesky quotes around lab number in URL
     fetch(`/questions/${lab_as_string}`, options)
         .then((res) => { res.ok ? console.log(res) : console.log(":{") })
         .catch(() => {
