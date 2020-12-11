@@ -17,7 +17,7 @@ function listResources() {
                     let section = document.createElement("p")
                     section.innerText = "Section: " + labValue
                     let author = document.createElement("p")
-                    author.innerText = "Asked by: " + authorValue
+                    author.innerText = "Posted by: " + authorValue
                     let files = document.createElement("p")
                     files.innerText = "Files uploaded: " + filesValue
                     li.appendChild(title);

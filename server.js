@@ -11,7 +11,10 @@ const dataTemplate = {
     statistics : {
         resourcesPosted: 0,
         questionsAsked: 0,
-        questionsAnswered: 0,
+        failedGETRequests: 0,
+        successfulGETRequests: 0,
+        failedPOSTRequests: 0,
+        successfulPOSTRequests: 0,
         lastQuestionPosted : "N/A",
         lastResourcePosted : "N/A"
     }
@@ -37,50 +40,72 @@ app.use(express.static('static'))
 // Description: Welcomes the dev to the API!
 const getAPI = (req, res) => {
     res.status(200).send("You've reached the Queue Manager API!")
+    res.app.locals.data.statistics.successfulGETRequests++;
 }
 
 // Function: getAllQuestions
 // Description: Returns all the questions asked by all lab classes.
 const getAllQuestions = (req, res) => {
-    if(!res.app.locals.data.questions)
-        res.status(404).send("No questions asked!")    
-    else   
+    if(!res.app.locals.data.questions){
+        res.status(404).send("No questions asked!")  
+        res.app.locals.data.statistics.failedGETRequests++;
+    }  
+    else   {
         res.status(200).send({questions : res.app.locals.data.questions})
+        res.app.locals.data.statistics.successfulGETRequests++;
+    }
 }
 
 // Function: getLabQuestions
 // Description: Returns all questions asked in the specified lab.
 const getLabQuestions = (req, res) => {
     const lab = req.params.lab
-    if(Object.keys(res.app.locals.data.questions).includes(lab))
+    if(Object.keys(res.app.locals.data.questions).includes(lab)){
         res.status(200).send({questions : res.app.locals.data.questions[lab]})
-    else
+        res.app.locals.data.statistics.successfulGETRequests++;
+    }
+    else{
         res.status(404).send(`No questions for class: ${lab}`)
+        res.app.locals.data.statistics.failedGETRequests++;
+    }
 }
 
 // Function: getAllResources
 // Description: Returns all the resources posted in all lab classes.
 const getAllResources = (req, res) => {
-    if(!res.app.locals.data.resources)
-        res.status(404).send("No resources posted!")    
-    else   
+    if(!res.app.locals.data.resources){
+        res.status(404).send("No resources posted!")  
+        res.app.locals.data.statistics.failedGETRequests++;
+    }
+          
+    else   {
         res.status(200).send({resources : res.app.locals.data.resources})
+        res.app.locals.data.statistics.successfulGETRequests++;
+    }
+        
 }
 
 // Function: getLabResources
 // Description: Returns all resources posted in the specified lab.
 const getLabResources = (req, res) => {
     const lab = req.params.lab
-    if(Object.keys(res.app.locals.data.resources).includes(lab))
+    if(Object.keys(res.app.locals.data.resources).includes(lab)){
+        res.app.locals.data.statistics.successfulGETRequests++;
         res.status(200).send({resources : res.app.locals.data.resources[lab]})
-    else
+    }
+        
+    else{
         res.status(404).send(`No resources posted for class: ${lab}`)
+        res.app.locals.data.statistics.failedGETRequests++;
+    }
+        
 }
 
 // Function: getSiteStats
 // Description: Gives some basic user statistics about the website
 const getSiteStats = (req, res) => {
     res.status(200).send(res.app.locals.data.statistics)
+    res.app.locals.data.statistics.successfulGETRequests++;
 }
 
 // Function: setupServer
@@ -108,12 +133,15 @@ const askQuestion = (req, res) => {
         const id = 0
         res.app.locals.data.questions[lab] = [{id: id, question : req.body}]
         res.status(200).send({id : id})
+        res.app.locals.data.statistics.successfulPOSTRequests++;
     }
     else {
         const id = res.app.locals.data.questions[lab].length
         res.app.locals.data.questions[lab].push({id : id, question : req.body})
         res.status(200).send({id : id})
+        res.app.locals.data.statistics.successfulPOSTRequests++;
     }
+    res.app.locals.data.statistics.questionsAsked++;
     res.app.locals.data.statistics.lastQuestionPosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes());
     saveData(res.app.locals.data)
 }
@@ -128,12 +156,15 @@ const postResource = (req, res) => {
         const id = 0
         res.app.locals.data.resources[lab] = [{id : id, resource : req.body}]
         res.status(200).send({id : id})
+        res.app.locals.data.statistics.successfulPOSTRequests++;
     }
     else {
         const id = res.app.locals.data.resources[lab].length
         res.app.locals.data.resources[lab].push({id: id, resource : req.body})
         res.status(200).send({id : id})
+        res.app.locals.data.statistics.successfulPOSTRequests++;
     }
+    res.app.locals.data.statistics.resourcesPosted++;
     res.app.locals.data.statistics.lastResourcePosted = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes());
     saveData(res.app.locals.data)
 }
@@ -148,8 +179,6 @@ app.get('/resources/:lab', getLabResources)
 
 app.post('/questions/:lab', askQuestion)
 app.post('/resources/:lab', postResource)
-
-//app.delete('/questions/:lab/:id', deleteQuestion)
 
 
 // Check for saved data, then finish server setup

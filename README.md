@@ -24,9 +24,5 @@ localhost:[PORT]<br>
 - localhost:[PORT]**/questions/[LAB_NAME]** : Posts question to the board in specified lab. Returns an assigned ID. <br>
 - localhost:[PORT]**/resources/[LAB_NAME]** : Posts resource to the board in specified lab. Returns an assigned ID. <br>
 
-### DELETE /
-- localhost:[PORT]**/questions/[LAB_NAME]/[ID]** : Deletes a specified question in specified lab based on assigned ID.<br>
-- localhost:[PORT]**/resources/[LAB_NAME]/[ID]** : Deletes a specified resource in specified lab based on assigned ID.<br>
-
 
 
