@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="uploadresources.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script defer async src="upload.js"></script>
+
+    <title>Upload Files</title>
+  </head>
+
+  <body>
+
+    <div id="main" class="header">
+        <h2 style="margin:10px"> Resources for Help</h2>
+
+        <input type="text" id="lab_specifier" placeholder="Please enter a lab number from 1-6...">
+        <input type="text" id="author" placeholder="Please enter your name...">
+        <button class="addBtn" id="button">Add</button>
+
+        <br>
+        <br>
+        <br>
+
+        <p style="text-align: left">Upload Files Here:</p>
+        <input type="file" multiple
+            name="file" 
+            id="file" 
+            onchange="javascript:updateList()" />
+        
+        <br>
+        <br>
+        <br>
+
+        <p style="text-align: left">Upload Other Resources Here:</p>
+        <input type="text" id="otherres" placeholder="Please type here...">
+        <button class="addBtn" id="button1">Add</button>
+       
+        <div class="space"></div>
+
+        <p>Selected files:</p>
+
+        <ul>
+        <div id="fileList"></div>
+        </ul>
+
+  </body>
+</html>

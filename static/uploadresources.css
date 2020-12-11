@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    min-width: 250px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+}
+
+ul li:hover {
+    background: #ddd;
+}
+
+h2{
+    color:#EEE8AA;
+}
+
+.header {
+    background-color: #008B8B;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+}
+
+.header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+
+.addBtn {
+    padding: 10px;
+    width: 25%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: #EEE8AA;
+    color: #B0C4DE;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+}
+
+.addBtn:hover {
+    background-color: #F0E68C;
+    color: #F5FFFA;
+}
+
+.space { 
+    margin-top: 300px;
+ }
+
+ .fileList {
+    background: #EEE8AA;
+    color: #21b6b6;
+    text-align: center;
+    font-size: 21px;
+    cursor: pointer;
+ }
+
+ ul {
+    background: #c9db26;
+    padding: 20px;
+  }
+
+  ul li {
+    background: #dfe98b;
+    margin: 5px;
+  }
