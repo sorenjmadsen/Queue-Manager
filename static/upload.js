@@ -1,6 +1,8 @@
 let button = document.getElementById("button");
 button.addEventListener("click", newElement);
 button.addEventListener("click", sendToServer);
+button1.addEventListener("click", newElement);
+button1.addEventListener("click", sendToServer);
 const date = new Date()
 
 function updateList () {
@@ -21,9 +23,7 @@ function newElement() {
     var authorValue = document.getElementById("author").value;
     var t = document.createTextNode(`File: "${files}" \t\t Other Resources: "${otherresources}" \t\t lab: "${labValue}" \t\t author: "${authorValue}"`);
     li.appendChild(t);
-    if (files === ''|| otherresources === ''|| labValue === ''|| authorValue === '') {
-        alert("You forgot to add!");
-    }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
+    if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
     } else {
         document.getElementById("list").appendChild(li);
@@ -72,19 +72,19 @@ function sendToServer(event) {
         })
 }
 
-function listResources() {
-    fetch('/resources/all')
-        .then(res => res.ok ? res.json() : "No resources!")
-        .then(body => {
-            console.log(body)
-            for (const lab of Object.values(body.resources)) {
-                for (const resource of lab) {
-                    const li = document.createElement("li")
-                    li.textContent = "File:" + JSON.stringify(resource.resource.files) + "\t\t text:" + JSON.stringify(resource.resource.text) + "\t\t lab:" + JSON.stringify(resource.resource.lab) +"\t\t author:" + JSON.stringify(resource.resource.author)
-                    document.getElementById("list").appendChild(li)
-                }
-            }
-        })
-}
+//function listResources() {
+//    fetch('/resources/all')
+//        .then(res => res.ok ? res.json() : "No resources!")
+//        .then(body => {
+//            console.log(body)
+//            for (const lab of Object.values(body.resources)) {
+//                for (const resource of lab) {
+//                    const li = document.createElement("li")
+//                    li.textContent = "File:" + JSON.stringify(resource.resource.files) + "\t\t text:" + JSON.stringify(resource.resource.text) + "\t\t lab:" + JSON.stringify(resource.resource.lab) +"\t\t author:" + JSON.stringify(resource.resource.author)
+//                    document.getElementById("list").appendChild(li)
+//                }
+//            }
+//        })
+//}
 
-listResources();
+//listResources();
