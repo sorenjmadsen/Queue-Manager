@@ -10,7 +10,7 @@ localhost:[PORT]<br>
 ### GET /  
 #### General
 - localhost:[PORT]**/api**                  : Welcome to the API! <br>
-- localhost:[PORT]**/statistics**           : Returns some simple user statistics <br>
+- localhost:[PORT]**/stats**                : Returns some simple user statistics <br>
 
 #### Questions
 - localhost:[PORT]**/questions/all**        : Returns all questions asked in all labs <br>
