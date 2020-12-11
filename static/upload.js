@@ -1,9 +1,9 @@
 let button = document.getElementById("button");
 button.addEventListener("click", newElement);
 button.addEventListener("click", sendToServer);
-const Date = new Date()
+const date = new Date()
 
-function updateList {
+function updateList () {
     var input = document.getElementById('file');
     var fileList = document.getElementById('fileList');
     var children = "";
