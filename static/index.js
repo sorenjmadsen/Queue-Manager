@@ -7,9 +7,10 @@ function newElement() {
     var li = document.createElement("li");
     var questionValue = document.getElementById("myInput").value;
     var labValue = document.getElementById("lab_specifier").value;
-    var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}"`);
+    var authorValue = document.getElementById("author").value;
+    var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}" \t\t author: "${authorValue}"`);
     li.appendChild(t);
-    if ((questionValue || labValue) === '') {
+    if ((questionValue || labValue || author) === '') {
         alert("You must write something!");
     }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
@@ -23,7 +24,8 @@ function sendToServer(event) {
     const obj = {
         "text": document.getElementById("myInput").value, 
         "date": date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()),
-        "lab": document.getElementById("lab_specifier").value
+        "lab": document.getElementById("lab_specifier").value,
+        "author": document.getElementById("author").value
     }
     console.log(obj)
     const headers = new Headers({
@@ -64,7 +66,7 @@ function listQuestions() {
             for (const lab of Object.values(body.questions)) {
                 for (const question of lab) {
                     const li = document.createElement("li")
-                    li.textContent = "question:" + JSON.stringify(question.question.text) + "\t\t lab:" + JSON.stringify(question.question.lab)
+                    li.textContent = "question:" + JSON.stringify(question.question.text) + "\t\t lab:" + JSON.stringify(question.question.lab) +"\t\t author:" + JSON.stringify(question.question.author)
                     document.getElementById("list").appendChild(li)
                 }
             }
