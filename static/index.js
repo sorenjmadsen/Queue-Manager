@@ -11,25 +11,27 @@ function newElement() {
     var authorValue = document.getElementById("author").value;
     let title = document.createElement("h5")
     title.innerText = questionValue
-
-    let div = document.createElement("div")
-    div.classList.add("post-about")
-    let section = document.createElement("p")
-    section.innerText = "Section: " + labValue
-    let author = document.createElement("p")
-    author.innerText = "Asked by: " + authorValue
-    li.appendChild(title);
-    div.appendChild(section);
-    div.appendChild(author);
-    li.appendChild(div);
-
     if (questionValue === ''|| labValue === ''|| authorValue === '') {
         alert("Please fill in all fields!");
     }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
     } else {
+
+
+        let div = document.createElement("div")
+        div.classList.add("post-about")
+        let section = document.createElement("p")
+        section.innerText = "Section: " + labValue
+        let author = document.createElement("p")
+        author.innerText = "Asked by: " + authorValue
+        li.appendChild(title);
+        div.appendChild(section);
+        div.appendChild(author);
+        li.appendChild(div);
         document.getElementById("list").appendChild(li);
         sendToServer();
+        document.getElementById("myInput").value = ""
+        document.getElementById("author").value = ""
     }
 }
 

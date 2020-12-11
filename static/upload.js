@@ -39,6 +39,8 @@ function newElement() {
         alert("You must enter a lab value within the parameters!");
     } else {
         document.getElementById("list").appendChild(li);
+        document.getElementById("myInput").value = ""
+        document.getElementById("author").value = ""
     }
 }
 
