@@ -15,45 +15,63 @@
       <h2 style="margin:10px">Queue Manager</h2>
       <div id="navbar">
         <li><a href="index.html">Home</a></li>
-        <li><a href="list.html">All Questions</a></li>
-        <li><a href="uploadresources.html">Helpful Resources</a></li>
-        <li>Lab Section</li>
+          <li><a href="list.html">All Questions</a></li>
+          <li><a href="uploadresources.html">Upload Resources</a></li>
+          <li><a href="resources.html">All Resources</a></li>
       </div>
-  </ul>
+    </ul>
+
 
     <div id="main" class="header">
-        <h2 style="margin:10px"> Resources for Help</h2>
-
-        <input type="text" id="lab_specifier" placeholder="Please enter a lab number from 1-6...">
-        <input type="text" id="author" placeholder="Please enter your name...">
-        <button class="addBtn" id="button">Add</button>
-
-        <br>
-        <br>
-        <br>
-
-        <p style="text-align: left">Upload Files Here:</p>
-        <input type="file" multiple
-            name="file" 
-            id="file" 
-            onchange="javascript:updateList()" />
+      <div class="general-container">
+        <h5>Upload a resource:</h5>
+        <div class="form" class="header">
+            <div class="input">
+              <p>Post Title:</p>
+              <input type="text" id="myInput" placeholder="Title">
+            </div>
+            <div class="input">
+              <p>Lab Section:</p>
+              <select id="lab_specifier">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            
+            <div class="input">
+              <p>Name:</p>
+              <input type="text" id="author" placeholder="First Last">
+            </div>
         
-        <br>
-        <br>
-        <br>
-
-        <p style="text-align: left">Upload Other Resources Here:</p>
-        <input type="text" id="otherres" placeholder="Please type here...">
-        <button class="addBtn" id="button1">Add</button>
-       
-        <div class="space"></div>
-
-        <p>Selected files:</p>
+            <div class="input">
+                <p style="text-align: left">Upload Files Here:</p>
+                <input type="file" multiple
+                    name="file" 
+                    id="file" 
+                    onchange="javascript:updateList()" />
+            </div>
+            
+          </div>
+          <div class="input">
+            <p>Selected files:</p>
 
         <ul>
         <div id="fileList"></div>
         </ul>
+          </div>
+          <button class="addBtn" id="button">Submit</button>
+          </div>
+        </div>
 
+        <div class="general-container">
+          <h5>Posted Resources:</h5>
+        <ul class="list" id="list">
+        </ul>
+      </div>
         <a href="resources.html">View all resources</a>
   </body>
 </html>

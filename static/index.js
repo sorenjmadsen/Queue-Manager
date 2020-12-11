@@ -4,14 +4,22 @@ const date = new Date()
 
 
 function newElement() {
-    var li = document.createElement("li");
+    var li = document.createElement("li")
+    li.classList.add("post");
     var questionValue = document.getElementById("myInput").value;
     var labValue = document.getElementById("lab_specifier").value;
     var authorValue = document.getElementById("author").value;
-    var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}" \t\t author: "${authorValue}"`);
-    li.appendChild(t);
+    let title = document.createElement("h5")
+    title.innerText = questionValue
+    let section = document.createElement("p")
+    section.innerText = "Section: " + labValue
+    let author = document.createElement("p")
+    author.innerText = "Asked by: " + authorValue
+    li.appendChild(title);
+    li.appendChild(section);
+    li.appendChild(author);
     if (questionValue === ''|| labValue === ''|| authorValue === '') {
-        alert("You must forgot to write something!");
+        alert("Please fill in all fields!");
     }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
     } else {
@@ -66,8 +74,24 @@ function listQuestions() {
             console.log(body)
             for (const lab of Object.values(body.questions)) {
                 for (const question of lab) {
-                    const li = document.createElement("li")
-                    li.textContent = "question:" + JSON.stringify(question.question.text) + "\t\t lab:" + JSON.stringify(question.question.lab) +"\t\t author:" + JSON.stringify(question.question.author)
+                    var li = document.createElement("li")
+                    li.classList.add("post");
+                    var questionValue = question.question.text;
+                    var labValue = question.question.lab;
+                    var authorValue = question.question.author;
+                    let title = document.createElement("h5")
+                    title.innerText = questionValue
+
+                    let div = document.createElement("div")
+                    div.classList.add("post-about")
+                    let section = document.createElement("p")
+                    section.innerText = "Section: " + labValue
+                    let author = document.createElement("p")
+                    author.innerText = "Asked by: " + authorValue
+                    li.appendChild(title);
+                    div.appendChild(section);
+                    div.appendChild(author);
+                    li.appendChild(div);
                     document.getElementById("list").appendChild(li)
                 }
             }

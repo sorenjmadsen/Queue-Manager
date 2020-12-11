@@ -12,14 +12,14 @@
   <h2 style="margin:10px">Queue Manager</h2>
   <div id="navbar">
     <li><a href="index.html">Home</a></li>
-    <li><a href="list.html">All Questions</a></li>
-    <li><a href="uploadresources.html">Helpful Resources</a></li>
-    <li>Lab Section</li>
+          <li><a href="list.html">All Questions</a></li>
+          <li><a href="uploadresources.html">Upload Resources</a></li>
+          <li><a href="resources.html">All Resources</a></li>
   </div>
 </ul>
-<div class="form-container">
+<div class="general-container">
 <h5>Submit a Question:</h5>
-<div class="form" class="header">
+<div class="form">
   <div class="input">
     <p>Question Title:</p>
     <input type="text" id="myInput" placeholder="Please ask a question...">
@@ -38,16 +38,17 @@
   
   <div class="input">
     <p>Name:</p>
-    <input type="text" id="author" placeholder="Please enter your name...">
+    <input type="text" id="author" placeholder="First Last">
   </div>
   
 </div>
 <button class="addBtn" id="button">Submit</button>
 </div>
-<ul id="list">
-  <li></li>
+<div class="general-container">
+<h5>Submitted Questions:</h5>
+<ul class="list" id="list">
 </ul>
 <a href="list.html">View all questions</a>
-
+</div>
 </body>
 </html>
