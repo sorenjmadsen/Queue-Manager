@@ -1,25 +1,24 @@
-// Create a new list item when clicking on the "Add" button
 let button = document.getElementById("button");
 button.addEventListener("click", newElement);
-button.addEventListener("click", sendToServer);
 const date = new Date()
 
 
 function newElement() {
     var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
+    var questionValue = document.getElementById("myInput").value;
+    var labValue = document.getElementById("lab_specifier").value;
+    var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}"`);
     li.appendChild(t);
-    if (inputValue === '') {
+    if ((questionValue || labValue) === '') {
         alert("You must write something!");
+    }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
+        alert("You must enter a lab value within the parameters!");
     } else {
         document.getElementById("list").appendChild(li);
+        sendToServer();
     }
-    //document.getElementById("myInput").value = "";
 }
 
-// when you use this function as an event handler, the parameter is 
-// an event object. not data
 function sendToServer(event) {
     const obj = {
         "text": document.getElementById("myInput").value, 
@@ -73,15 +72,3 @@ function listQuestions() {
 }
 
 listQuestions();
-
-/**
- *
- * Body.questions is an Object where each key is a lab number
- *  -> In order to list all of the questions for each lab,
- *        you have to do nested for loops.
- *  -> To loop through keys/values of an object, use the
- *      Object.keys(questions) or Object.values(questions) functions
- *
- * When you want to access a single lab, you can use the
- *  body.questions[":lab"] or body.questions[lab] (if you have a lab variable)
- */
