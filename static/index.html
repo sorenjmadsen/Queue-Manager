@@ -2,20 +2,48 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer async src="index.js"></script>
 </head>
 <body>
 
-<div id="main" class="header">
-  <h2 style="margin:10px">Questions</h2>
-  <input type="text" id="myInput" placeholder="Please ask a question...">
-  <input type="text" id="lab_specifier" placeholder="Please enter a lab number from 1-6...">
-  <input type="text" id="author" placeholder="Please enter your name...">
-  <a href="uploadresources.html" class="addBtn">Upload a Resource Here</a>
-  <button class="addBtn" id="button">Add</button>
-</div>
 
+<ul id="nav">
+  <h2 style="margin:10px">Queue Manager</h2>
+  <div id="navbar">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="list.html">All Questions</a></li>
+    <li><a href="uploadresources.html">Helpful Resources</a></li>
+    <li>Lab Section</li>
+  </div>
+</ul>
+<div class="form-container">
+<h5>Submit a Question:</h5>
+<div class="form" class="header">
+  <div class="input">
+    <p>Question Title:</p>
+    <input type="text" id="myInput" placeholder="Please ask a question...">
+  </div>
+  <div class="input">
+    <p>Lab Section:</p>
+    <select id="lab_specifier">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+  </div>
+  
+  <div class="input">
+    <p>Name:</p>
+    <input type="text" id="author" placeholder="Please enter your name...">
+  </div>
+  
+</div>
+<button class="addBtn" id="button">Submit</button>
+</div>
 <ul id="list">
   <li></li>
 </ul>

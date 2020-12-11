@@ -423,8 +423,15 @@
 body {
     margin:0;
 }
-a {
+li > a {
     color:black;
+    text-decoration: none;
+    padding:10px
+}
+
+li > a:hover {
+    background-color:#222;
+    color: #eee;
     text-decoration: none;
 }
 
@@ -448,22 +455,23 @@ a {
 }
 
 #navbar > * {
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
     margin-left: 40px;
     margin-bottom: 15px;
 }
-#navbar > li:hover {
-    background-color:#222;
-    color: #eee;
+
+.form-container {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-#form{
+.form{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 15px;
+}
+.form > button {
+    width: 50px;
 }
 .input {
     display: flex;
@@ -474,4 +482,8 @@ a {
 
 .input > * {
     margin: 5px
+}
+.input > input{
+    flex-grow: 1;
+    max-width: 1000px;
 }

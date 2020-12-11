@@ -103,6 +103,7 @@ const saveData = (data) => {
 const askQuestion = (req, res) => {
     const lab = req.params.lab
     console.log("Question post attempted with data: " + req.body)
+    res.set('Content-Type', 'application/json');
     if(!Object.keys(res.app.locals.data.questions).includes(lab)){
         const id = 0
         res.app.locals.data.questions[lab] = [{id: id, question : req.body}]
@@ -122,6 +123,7 @@ const askQuestion = (req, res) => {
 const postResource = (req, res) => {
     const lab = req.params.lab
     console.log(req.body)
+    res.set('Content-Type', 'application/json');
     if(!Object.keys(res.app.locals.data.resources).includes(lab)){
         const id = 0
         res.app.locals.data.resources[lab] = [{id : id, resource : req.body}]
