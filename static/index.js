@@ -20,7 +20,7 @@ function newElement() {
     }
 }
 
-function sendToServer(event) {
+function sendToServer(data) {
     const obj = {
         "text": document.getElementById("myInput").value, 
         "date": date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + (date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes()),
@@ -45,7 +45,7 @@ function sendToServer(event) {
             console.log(missedQuestions)
             if (missedQuestions) {
                 missedQuestions = JSON.stringify([
-                    ...JSON.parse(missedQuestions), event
+                    ...JSON.parse(missedQuestions), data
                 ])
 
                 localStorage.setItem("QUESTIONS", missedQuestions)
