@@ -10,7 +10,7 @@ function newElement() {
     var authorValue = document.getElementById("author").value;
     var t = document.createTextNode(`question: "${questionValue}" \t\t lab: "${labValue}" \t\t author: "${authorValue}"`);
     li.appendChild(t);
-    if ((questionValue || labValue || author) === '') {
+    if (questionValue === ''|| labValue === ''|| authorValue === '') {
         alert("You must write something!");
     }else if (isNaN(labValue) || labValue > 6 || labValue < 0) {
         alert("You must enter a lab value within the parameters!");
